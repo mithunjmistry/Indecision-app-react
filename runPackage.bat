@@ -1,2 +1,1 @@
-start runBabel.bat
-start runLiveServer.bat
+yarn run dev-server

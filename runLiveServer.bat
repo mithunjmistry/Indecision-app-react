@@ -1,2 +1,2 @@
 echo Starting live-server
-live-server public
+yarn run serve
