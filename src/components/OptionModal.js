@@ -7,9 +7,10 @@ const optionModal = (props) => (
       contentLabel="Selected Option"
       onRequestClose={props.closeModal}
       ariaHideApp={false}
+      className={'modal'}
     >
-        <h3>Selected Option</h3>
-        {props.selectedOption && <p>{props.selectedOption}</p>}
+        <h3 className={'modal__title'}>Selected Option</h3>
+        {props.selectedOption && <p className={'modal__body'}>{props.selectedOption}</p>}
         <button onClick={props.closeModal}>Okay</button>
     </Modal>
 );

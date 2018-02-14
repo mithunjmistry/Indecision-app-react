@@ -105,7 +105,7 @@ export default class InDecisionApp extends React.Component {
         const subtitle = 'Put your life in the hands of computer.';
 
         return (
-            <div>
+            <div className={'container'}>
                 <Header subtitle={subtitle} />
                 <Action hasOptions={this.state.options.length === 0} makeDecision={this.makeDecision} />
                 <Options 
