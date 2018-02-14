@@ -5,16 +5,60 @@ import Action from './Action';
 import Options from './Options';
 
 export default class InDecisionApp extends React.Component {
+
     constructor(props){
         super(props);
-        this.removeAllOptions = this.removeAllOptions.bind(this);
-        this.makeDecision = this.makeDecision.bind(this);
-        this.addOption = this.addOption.bind(this);
-        this.removeOption = this.removeOption.bind(this);
         this.state = {
             options: props.options
         }
     }
+
+    removeAllOptions = () => {
+        // this.setState(() => {
+        //     return {
+        //         options: []
+        //     }
+        // });
+
+        this.setState(() => ({ options: [] }))
+    };
+
+    removeOption = (optionToRemove) => {
+        // this.setState((prevState) => {
+        //     return {
+        //         options: prevState.options.filter((option) => {
+        //             return optionToRemove !== option;
+        //         })
+        //     }
+        // });
+
+        this.setState((prevState) => ({
+            options: prevState.options.filter((option) => optionToRemove !== option)
+        }))
+    };
+
+    makeDecision = () => {
+        const randomNum = Math.floor(Math.random() * this.state.options.length);
+        const option = this.state.options[randomNum];
+        alert(option);
+    };
+
+    addOption = (option) => {
+        if(!option){
+            return 'Please enter some value.';
+        }
+        else if(this.state.options.indexOf(option) != -1){
+            return 'This option is already present.'
+        }
+
+        // this.setState((prevState) => {
+        //     return {
+        //         options: prevState.options.concat(option)
+        //     }
+        // });
+
+        this.setState((prevState) => ({options: prevState.options.concat(option)}));
+    };
 
     componentDidMount(){
         try{
@@ -47,53 +91,6 @@ export default class InDecisionApp extends React.Component {
         // when we load an entire new page
     }
 
-    removeAllOptions(){
-        // this.setState(() => {
-        //     return {
-        //         options: []
-        //     } 
-        // });
-
-        this.setState(() => ({ options: [] }))
-    }
-
-    removeOption(optionToRemove){
-        // this.setState((prevState) => {
-        //     return {
-        //         options: prevState.options.filter((option) => {
-        //             return optionToRemove !== option;
-        //         })
-        //     }
-        // });
-
-        this.setState((prevState) => ({
-            options: prevState.options.filter((option) => optionToRemove !== option)
-        }))
-    }
-
-    makeDecision(){
-        const randomNum = Math.floor(Math.random() * this.state.options.length);
-        const option = this.state.options[randomNum];
-        alert(option);
-    }
-
-    addOption(option){
-        if(!option){
-            return 'Please enter some value.';
-        }
-        else if(this.state.options.indexOf(option) != -1){
-            return 'This option is already present.'
-        }
-
-        // this.setState((prevState) => {
-        //     return {
-        //         options: prevState.options.concat(option)
-        //     }
-        // });
-
-        this.setState((prevState) => ({options: prevState.options.concat(option)}));
-    }
-
     render(){
         const subtitle = 'Put your life in the hands of computer.';
 
@@ -114,4 +111,4 @@ export default class InDecisionApp extends React.Component {
 
 InDecisionApp.defaultProps = {
     options: []
-}
+};
