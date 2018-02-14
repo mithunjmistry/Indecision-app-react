@@ -3,13 +3,15 @@ import AddOption from './AddOption';
 import Header from './Header';
 import Action from './Action';
 import Options from './Options';
+import OptionModal from './OptionModal';
 
 export default class InDecisionApp extends React.Component {
 
     constructor(props){
         super(props);
         this.state = {
-            options: props.options
+            options: props.options,
+            selectedOption: undefined
         }
     }
 
@@ -40,7 +42,11 @@ export default class InDecisionApp extends React.Component {
     makeDecision = () => {
         const randomNum = Math.floor(Math.random() * this.state.options.length);
         const option = this.state.options[randomNum];
-        alert(option);
+        this.setState(() => {
+           return {
+               selectedOption: option
+            }
+        });
     };
 
     addOption = (option) => {
@@ -58,6 +64,10 @@ export default class InDecisionApp extends React.Component {
         // });
 
         this.setState((prevState) => ({options: prevState.options.concat(option)}));
+    };
+
+    closeModal = () => {
+      this.setState(() => ({selectedOption: undefined}));
     };
 
     componentDidMount(){
@@ -104,6 +114,10 @@ export default class InDecisionApp extends React.Component {
                 removeOption={this.removeOption}
                 />
                 <AddOption addOption={this.addOption} />
+                <OptionModal
+                selectedOption={this.state.selectedOption}
+                closeModal={this.closeModal}
+                />
             </div>
         );
     }
