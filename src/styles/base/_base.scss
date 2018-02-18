@@ -1,12 +1,12 @@
-html {
-  font-size: 62.5%;
-}
+//html {
+//  font-size: 62.5%;
+//}
 
-body {
-  background: $dark-blue;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: $m-size;
-}
+//body {
+//  background: $dark-blue;
+//  font-family: Helvetica, Arial, sans-serif;
+//  font-size: $m-size;
+//}
 
 button {
   cursor: pointer;
@@ -14,4 +14,8 @@ button {
 
 button:disabled {
   cursor: default;
+}
+
+.link-active{
+  font-weight: bold;
 }
