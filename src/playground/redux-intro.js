@@ -69,3 +69,13 @@ store.dispatch(decrementCount());
 store.dispatch({
     type: 'RESET'
 });
+
+const user = {
+  name: 'Mithun',
+  age: 22
+};
+
+console.log({
+    ...user,
+    location: 'Los Angeles'
+});
