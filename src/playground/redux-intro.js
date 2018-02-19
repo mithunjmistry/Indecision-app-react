@@ -13,29 +13,35 @@ const decrementCount = ({decrementBy = 1} = {}) => ({
     decrementBy
 });
 
+// reducers
+// 1. Reducers are pure functions. (Output depends on input and does not interact with anything outside scope)
+// 2. Should not change state or action
+
+const reducer = (state = { count: 0}, action) => {
+        // returns state
+        switch(action.type){
+            case 'INCREMENT':
+                return {
+                    count: state.count + action.incrementBy
+                };
+            case 'DECREMENT':
+                return {
+                    count: state.count - action.decrementBy
+                };
+            case 'RESET':
+                return {
+                    count: 0
+                };
+            default:
+                return state;
+        }
+
+    };
+
 // create a store
 
 // takes first parameter as state and set default state here only
-const store = createStore((state = { count: 0}, action) => {
-    // returns state
-    switch(action.type){
-        case 'INCREMENT':
-            return {
-                count: state.count + action.incrementBy
-            };
-        case 'DECREMENT':
-            return {
-                count: state.count - action.decrementBy
-            };
-        case 'RESET':
-            return {
-                count: 0
-            };
-        default:
-            return state;
-    }
-
-});
+const store = createStore(reducer);
 
 // Action - sends an object to the store
 // we will have actions like increment, decrement etc.
