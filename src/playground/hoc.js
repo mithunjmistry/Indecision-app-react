@@ -20,11 +20,11 @@ const Template = (props) => (
 const withAuthenticationCheck = (WrappedComponent) => {
     return (props) => (
         <div>
-            {props.isAuthenticated ? <WrappedComponent/> : <p>You are not authenticated.</p>}
+            {props.isAuthenticated ? <WrappedComponent {...props}/> : <p>You are not authenticated.</p>}
         </div>
     )
 };
 
 const AuthInfo = withAuthenticationCheck(Template);
 
-ReactDOM.render(<AuthInfo isAuthenticated={false} info={'Hey'}/>, root);
+ReactDOM.render(<AuthInfo isAuthenticated={true} info={'Hey'}/>, root);
